@@ -16,16 +16,16 @@ CPU：DualCore Intel Core i3-7130U
 USB控制器：Intel Sunrise Point-LP PCH - USB 3.0 xHCI Controller（2*Type-C，2*USB3.0）
 摄像头：Integrated Camera
 
-黑苹果成果：
+Hackintosh成果：
 显卡：正常
 声卡：正常
 显示器色彩：正常
 摄像头：正常
 无线网卡：正常
 USB接口：正常
-隔空投送、接力、跨设备拷贝：正常
+隔空投送、接力、跨设备拷贝、正常
 触摸板：仅单点触控
 读卡器：未驱动
 亮度调节：正常
 音量调节：正常
-休眠：深度浅，待完善
+休眠：有外接USB设备时会不断休眠唤醒

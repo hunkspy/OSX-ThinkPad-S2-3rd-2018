@@ -5,16 +5,20 @@
 	<key>ACPI</key>
 	<dict>
 		<key>AutoMerge</key>
-		<true/>
+		<false/>
 		<key>Comment-DisabledAML</key>
 		<string>Disable other forms of CPU PM due to SSDT/Generate/PluginType=true</string>
 		<key>DSDT</key>
 		<dict>
+			<key>Debug</key>
+			<false/>
 			<key>DropOEM_DSM</key>
 			<false/>
 			<key>Fixes</key>
 			<dict>
 				<key>AddDTGP</key>
+				<false/>
+				<key>AddPNLF</key>
 				<false/>
 				<key>Comment-IRQ Fix</key>
 				<string>The following fixes may be needed for onboard audio/USB/etc</string>
@@ -28,6 +32,8 @@
 				<false/>
 				<key>FixLAN</key>
 				<false/>
+				<key>FixMutex</key>
+				<false/>
 				<key>FixRTC</key>
 				<false/>
 				<key>FixSBUS</key>
@@ -36,40 +42,16 @@
 				<false/>
 				<key>FixTMR</key>
 				<false/>
+				<key>FixUSB</key>
+				<false/>
+				<key>FixWAK</key>
+				<false/>
 			</dict>
 			<key>Name</key>
 			<string>DSDT.aml</string>
-			<key>Patches</key>
-			<array>
-				<dict>
-					<key>Comment</key>
-					<string>change LPC to LPCB</string>
-					<key>Disabled</key>
-					<false/>
-					<key>Find</key>
-					<data>TFBDXw==</data>
-					<key>Replace</key>
-					<data>TFBDQg==</data>
-				</dict>
-				<dict>
-					<key>Comment</key>
-					<string>change _OSI to XOSI</string>
-					<key>Disabled</key>
-					<false/>
-					<key>Find</key>
-					<data>X09TSQ==</data>
-					<key>Replace</key>
-					<data>WE9TSQ==</data>
-				</dict>
-			</array>
 		</dict>
 		<key>FixHeaders</key>
-		<true/>
-		<key>RenameDevices</key>
-		<dict>
-			<key>_SB.PCI0.RP09.PXSX</key>
-			<string>SDXC</string>
-		</dict>
+		<false/>
 		<key>SSDT</key>
 		<dict>
 			<key>DropOem</key>
@@ -77,12 +59,10 @@
 			<key>Generate</key>
 			<dict>
 				<key>PluginType</key>
-				<true/>
+				<false/>
 			</dict>
 			<key>NoOemTableId</key>
 			<false/>
-			<key>PluginType</key>
-			<string>1</string>
 		</dict>
 	</dict>
 	<key>Boot</key>
@@ -90,26 +70,38 @@
 		<key>#DefaultVolume</key>
 		<string>LastBootedVolume</string>
 		<key>Arguments</key>
-		<string>brcmfx-country=CN -v</string>
+		<string>brcmfx-country=CN</string>
+		<key>Debug</key>
+		<false/>
 		<key>DefaultVolume</key>
 		<string>Macintosh HD</string>
+		<key>Fast</key>
+		<true/>
 		<key>Legacy</key>
 		<string>PBR</string>
 		<key>NeverHibernate</key>
 		<false/>
+		<key>NoEarlyProgress</key>
+		<false/>
 		<key>Secure</key>
 		<false/>
-		<key>Timeout</key>
-		<integer>1</integer>
+		<key>StrictHibernate</key>
+		<false/>
 		<key>XMPDetection</key>
 		<false/>
 	</dict>
 	<key>CPU</key>
 	<dict>
+		<key>C2</key>
+		<false/>
+		<key>C4</key>
+		<false/>
+		<key>C6</key>
+		<false/>
 		<key>HWPEnable</key>
-		<true/>
-		<key>TDP</key>
-		<integer>15</integer>
+		<false/>
+		<key>TurboDisable</key>
+		<false/>
 	</dict>
 	<key>Comment</key>
 	<string>This file is for Haswell graphics that require FakeID=0x04128086</string>
@@ -166,40 +158,36 @@
 		<key>HDMIInjection</key>
 		<false/>
 		<key>LANInjection</key>
-		<true/>
+		<false/>
 		<key>Properties</key>
 		<dict>
-			<key>PciRoot(0x0)/Pci(0x1c,0x2)/Pci(0x0,0x0)</key>
-			<dict>
-				<key>AAPL,slot-name</key>
-				<string>Internal@0,28,2/0,0</string>
-				<key>compatible</key>
-				<string>pci14e4,43a3</string>
-				<key>device_type</key>
-				<string>Airport Extreme</string>
-				<key>model</key>
-				<string>DW1820A (BCM4350) 802.11ac Wireless</string>
-				<key>name</key>
-				<string>Airport</string>
-				<key>pci-aspm-default</key>
-				<integer>0</integer>
-			</dict>
-			<key>PciRoot(0x0)/Pci(0x1d,0x0)/Pci(0x0,0x0)</key>
+			<key>PciRoot(0x0)/Pci(0x1D,0x0)/Pci(0x0,0x0)</key>
 			<dict>
 				<key>AAPL,slot-name</key>
 				<string>Internal@0,29,0/0,0</string>
 				<key>compatible</key>
 				<string>pci10ec,522a</string>
-				<key>device-id</key>
-				<data>KlIAAA==</data>
 				<key>device_type</key>
 				<string>Card Reader</string>
 				<key>model</key>
 				<string>RTS522A PCI Express Card Reader</string>
 				<key>name</key>
 				<string>Apple Internal SDXC Memory Card Reader</string>
-				<key>vendor-id</key>
-				<data>7BAAAA==</data>
+			</dict>
+			<key>PciRoot(0x0)/Pci(0x1c,0x2)/Pci(0x0,0x0)</key>
+			<dict>
+				<key>AAPL,slot-name</key>
+				<string>WLAN</string>
+				<key>compatible</key>
+				<string>pci14e4,43a3</string>
+				<key>device_type</key>
+				<string>Airport Extreme</string>
+				<key>model</key>
+				<string>BCM4350 802.11ac Wireless Network Adapter</string>
+				<key>name</key>
+				<string>Airport</string>
+				<key>pci-aspm-default</key>
+				<integer>0</integer>
 			</dict>
 			<key>PciRoot(0x0)/Pci(0x2,0x0)</key>
 			<dict>
@@ -208,7 +196,7 @@
 				<key>AAPL,slot-name</key>
 				<string>Internal@0,2,0</string>
 				<key>AAPL00,override-no-connect</key>
-				<string></string>
+				<data>AP///////wAwrpBAAAAAAAAZAQSVHRB46rv1lFVUkCcjUFQAAAABAQEBAQEBAQEBAQEBAQEBiB1W4lAAFjAmFjYAJaQQAAAYmBdW4lAAFjAmFjYAJaQQAAAYAAAADwCMCTCMCTAZCQAGrywWAAAA/gBCMTMzWFROMDEuNiAKAHM=</data>
 				<key>device-id</key>
 				<data>FlkAAA==</data>
 				<key>device_type</key>
@@ -236,7 +224,7 @@
 			<key>FixOwnership</key>
 			<false/>
 			<key>Inject</key>
-			<true/>
+			<false/>
 		</dict>
 		<key>UseIntelHDMI</key>
 		<false/>
@@ -248,16 +236,17 @@
 		<key>Hide</key>
 		<array>
 			<string>Preboot</string>
+			<string>Recovery</string>
 		</array>
 		<key>Language</key>
-		<string>cn:0</string>
+		<string>zh-Hant:-16899</string>
 		<key>Mouse</key>
 		<dict>
 			<key>Enabled</key>
 			<false/>
 		</dict>
 		<key>PlayAsync</key>
-		<true/>
+		<false/>
 		<key>Scan</key>
 		<dict>
 			<key>Entries</key>
@@ -278,14 +267,8 @@
 	<dict>
 		<key>EDID</key>
 		<dict>
-			<key>Custom</key>
-			<data>AP///////wAwrpBAAAAAAAAZAQSVHRB46rv1lFVUkCcjUFQAAAABAQEBAQEBAQEBAQEBAQEBiB1W4lAAFjAmFjYAJaQQAAAYmBdW4lAAFjAmFjYAJaQQAAAYAAAADwCMCTCMCTAZCQAGrywWAAAA/gBCMTMzWFROMDEuNiAKAHM=</data>
 			<key>Inject</key>
-			<true/>
-			<key>ProductID</key>
-			<string>0x4090</string>
-			<key>VendorID</key>
-			<string>0x30AE</string>
+			<false/>
 		</dict>
 		<key>Inject</key>
 		<dict>
@@ -299,23 +282,13 @@
 	</dict>
 	<key>KernelAndKextPatches</key>
 	<dict>
-		<key>AppleIntelCPUPM</key>
-		<false/>
-		<key>AppleRTC</key>
-		<true/>
-		<key>DellSMBIOSPatch</key>
-		<false/>
-		<key>KernelLapic</key>
-		<false/>
-		<key>KernelPm</key>
-		<false/>
 		<key>KextsToPatch</key>
 		<array>
 			<dict>
 				<key>Comment</key>
 				<string>USB port limit patch #1/4 10.14.x modify by DalianSky (credit ydeng)</string>
 				<key>Disabled</key>
-				<false/>
+				<true/>
 				<key>Find</key>
 				<data>g/sPDw==</data>
 				<key>InfoPlistPatch</key>
@@ -331,7 +304,7 @@
 				<key>Comment</key>
 				<string>USB port limit patch #2/4 10.14.x modify by DalianSky (credit PMHeart)</string>
 				<key>Disabled</key>
-				<false/>
+				<true/>
 				<key>Find</key>
 				<data>g+MP0w==</data>
 				<key>InfoPlistPatch</key>
@@ -345,9 +318,25 @@
 			</dict>
 			<dict>
 				<key>Comment</key>
+				<string>USB Port limit patch #3/4 10.14.x modify by DalianSky (credit PMheart)</string>
+				<key>Disabled</key>
+				<true/>
+				<key>Find</key>
+				<data>g/sPDw==</data>
+				<key>InfoPlistPatch</key>
+				<false/>
+				<key>MatchOS</key>
+				<string>10.14.x</string>
+				<key>Name</key>
+				<string>com.apple.driver.usb.AppleUSBXHCI</string>
+				<key>Replace</key>
+				<data>g/s/Dw==</data>
+			</dict>
+			<dict>
+				<key>Comment</key>
 				<string>USB Port limit patch #4/4 10.14.x modify by DalianSky (credit PMheart)</string>
 				<key>Disabled</key>
-				<false/>
+				<true/>
 				<key>Find</key>
 				<data>g/8PDw==</data>
 				<key>InfoPlistPatch</key>
@@ -358,22 +347,6 @@
 				<string>com.apple.driver.usb.AppleUSBXHCI</string>
 				<key>Replace</key>
 				<data>g/8/Dw==</data>
-			</dict>
-			<dict>
-				<key>Comment</key>
-				<string>IONVMeFamily Patch
-
-</string>
-				<key>Disabled</key>
-				<true/>
-				<key>Find</key>
-				<data>9sEQD4VBAQAA</data>
-				<key>InfoPlistPatch</key>
-				<false/>
-				<key>Name</key>
-				<string>IONVMeFamily</string>
-				<key>Replace</key>
-				<data>9sEBD4VBAQAA</data>
 			</dict>
 		</array>
 	</dict>
